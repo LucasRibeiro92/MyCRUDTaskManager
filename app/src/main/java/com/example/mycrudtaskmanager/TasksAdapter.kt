@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -20,7 +21,8 @@ class TasksAdapter(private var tasks: MutableList<Task>, context: Context) :
             val titleTextView: TextView =  itemView.findViewById(R.id.titleTextView)
             val contentTextView: TextView = itemView.findViewById(R.id.contentTextView)
             val updateButton: ImageView = itemView.findViewById(R.id.updateButton)
-            val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
+            val completedCheckBox: CheckBox = itemView.findViewById(R.id.completedCheckBox)
+            //val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -30,10 +32,12 @@ class TasksAdapter(private var tasks: MutableList<Task>, context: Context) :
 
     override fun getItemCount(): Int = tasks.size
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
         holder.titleTextView.text = task.title
         holder.contentTextView.text = task.content
+        holder.completedCheckBox.isChecked = task.completed
 
         holder.updateButton.setOnClickListener {
             val intent = Intent(holder.itemView.context, UpdateTaskActivity::class.java).apply {
@@ -42,11 +46,18 @@ class TasksAdapter(private var tasks: MutableList<Task>, context: Context) :
             holder.itemView.context.startActivity(intent)
         }
 
-        holder.deleteButton.setOnClickListener {
+        holder.completedCheckBox.setOnCheckedChangeListener { _, isChecked ->
+            task.completed = isChecked
+            db.updateTask(task)
+            notifyDataSetChanged() // Notifica o adapter para atualizar a RecyclerView
+            Toast.makeText(holder.itemView.context, "Task Updated", Toast.LENGTH_SHORT).show()
+        }
+
+        /*holder.deleteButton.setOnClickListener {
             db.deleteTask(task.id)
             refreshData(db.getAllTasks())
             Toast.makeText(holder.itemView.context, "Task Deleted", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 
     @SuppressLint("NotifyDataSetChanged")

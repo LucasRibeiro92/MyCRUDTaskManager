@@ -3,5 +3,6 @@ package com.example.mycrudtaskmanager
 data class Task(
     val id: Int,
     val title: String,
-    val content: String
+    val content: String,
+    var completed: Boolean = false
 )
