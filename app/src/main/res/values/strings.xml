@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My CRUD Task Manager</string>
+    <string name="go_to_create_a_task_screen">Go to Create a Task Screen</string>
+    <string name="add_task">Add Task</string>
+    <string name="save_button">Save button</string>
+    <string name="enter_the_title">Enter the title</string>
+    <string name="enter_the_description">Enter the description</string>
+    <string name="tasks">Tasks</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="update_button">Update Button</string>
+    <string name="delete_button">Delete Button</string>
+</resources>

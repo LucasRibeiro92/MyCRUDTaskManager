@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UpdateTaskActivity"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/editTaskHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/edit_task"
+        android:textColor="@color/orange"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins"
+        tools:ignore="RelativeOverlap" />
+
+    <ImageView
+        android:id="@+id/updateSaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/editTaskHeading"
+        android:layout_marginEnd="6dp"
+        app:srcCompat="@drawable/baseline_done_24"
+        android:contentDescription="@string/save_button"/>
+
+    <EditText
+        android:id="@+id/updateTitleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/enter_the_title"
+        android:padding="12dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/editTaskHeading"
+        android:background="@drawable/orange_border"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:autofillHints=""
+        android:inputType="text"
+        android:fontFamily="@font/poppins"/>
+
+    <EditText
+        android:id="@+id/updateContentEditText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="@string/enter_the_description"
+        android:gravity="top"
+        android:padding="12dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/updateTitleEditText"
+        android:background="@drawable/orange_border"
+        android:layout_marginTop="12dp"
+        android:autofillHints=""
+        android:inputType="text"
+        android:fontFamily="@font/poppins"/>
+
+</RelativeLayout>
