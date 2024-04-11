@@ -11,7 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class TasksAdapter(private var tasks: List<Task>, context: Context) :
+class TasksAdapter(private var tasks: MutableList<Task>, context: Context) :
     RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
         private val db: TaskDatabaseHelper = TaskDatabaseHelper(context)
@@ -50,8 +50,18 @@ class TasksAdapter(private var tasks: List<Task>, context: Context) :
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun refreshData(newTasks: List<Task>) {
-        tasks = newTasks
+    fun refreshData(newTasks: MutableList<Task>) {
+        tasks = newTasks.toMutableList()
         notifyDataSetChanged()
     }
+
+    fun getTaskAtPosition(position: Int): Task {
+        return tasks[position]
+    }
+
+    fun removeItem(position: Int) {
+        tasks.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
 }

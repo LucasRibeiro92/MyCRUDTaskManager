@@ -37,7 +37,7 @@ class TaskDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         db.close()
     }
 
-    fun getAllTasks(): List<Task> {
+    fun getAllTasks(): MutableList<Task> {
         val tasksList = mutableListOf<Task>()
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_NAME"
