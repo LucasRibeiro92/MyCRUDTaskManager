@@ -1,8 +1,6 @@
 package com.example.mycrudtaskmanager
 
 import android.annotation.SuppressLint
-import android.os.Handler
-import android.os.Looper
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
