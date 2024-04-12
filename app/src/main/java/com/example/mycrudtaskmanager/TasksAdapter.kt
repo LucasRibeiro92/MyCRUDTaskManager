@@ -1,6 +1,8 @@
 package com.example.mycrudtaskmanager
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -46,18 +48,13 @@ class TasksAdapter(private var tasks: MutableList<Task>, context: Context) :
             holder.itemView.context.startActivity(intent)
         }
 
+        holder.completedCheckBox.setOnCheckedChangeListener(null)
+        holder.completedCheckBox.isChecked = task.completed
         holder.completedCheckBox.setOnCheckedChangeListener { _, isChecked ->
             task.completed = isChecked
             db.updateTask(task)
-            notifyDataSetChanged() // Notifica o adapter para atualizar a RecyclerView
             Toast.makeText(holder.itemView.context, "Task Updated", Toast.LENGTH_SHORT).show()
         }
-
-        /*holder.deleteButton.setOnClickListener {
-            db.deleteTask(task.id)
-            refreshData(db.getAllTasks())
-            Toast.makeText(holder.itemView.context, "Task Deleted", Toast.LENGTH_SHORT).show()
-        }*/
     }
 
     @SuppressLint("NotifyDataSetChanged")
